@@ -51,5 +51,10 @@ int main(int argc, char* argv[])
 		std::cout << err << std::endl;
 		return -1;
 	}
+	catch (const std::exception&)
+	{
+		std::cout << "Произошла ошибка. Проверьте параметры и повторите попытку" << std::endl;
+		return -1;
+	}
 	return 0;
 }
