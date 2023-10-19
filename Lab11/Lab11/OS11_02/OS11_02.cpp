@@ -30,7 +30,6 @@ int main(int argc, char* argv[])
 		std::wcout << "filename: " << fileName << std::endl;
 		HT::HTHANDLE* HT;
 		HT = HT::Open(fileName, true);
-		std::cout << HT;
 
 		if (HT == NULL)
 		{
@@ -61,6 +60,7 @@ int main(int argc, char* argv[])
 			else if (el)
 			{
 				HT::print(el);
+				std::cout << "INSERT SUCCESS" << std::endl;
 			}
 			Sleep(1000);
 			delete el1;
