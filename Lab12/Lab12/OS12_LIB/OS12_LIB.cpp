@@ -35,18 +35,16 @@ namespace OS12
 
 			if (SUCCEEDED(hr0))
 			{
+				double z = 0.0;
+				HRESULT hr1 = pIAdder->Add(x, y, z);
+				if (!SUCCEEDED(hr1))
 				{
-					double z = 0.0;
-					HRESULT hr1 = pIAdder->Add(x, y, z);
-					if (!SUCCEEDED(hr1))
-					{
-						IERR("IAdder::Add");
-						throw (int)hr1;
-					}
-					else
-					{
-						return z;
-					}
+					IERR("IAdder::Add");
+					throw (int)hr1;
+				}
+				else
+				{
+					return z;
 				}
 			}
 			else
@@ -62,19 +60,17 @@ namespace OS12
 			HRESULT hr0 = ((IUnknown*)h)->QueryInterface(IID_IAdder, (void**)&pIAdder);
 			if (SUCCEEDED(hr0))
 			{
-				{
-					double z = 0.0;
-					HRESULT hr1 = pIAdder->Sub(x, y, z);
+				double z = 0.0;
+				HRESULT hr1 = pIAdder->Sub(x, y, z);
 
-					if (!SUCCEEDED(hr1))
-					{
-						IERR("IAdder::Sub");
-						throw (int)hr1;
-					}
-					else
-					{
-						return z;
-					}
+				if (!SUCCEEDED(hr1))
+				{
+					IERR("IAdder::Sub");
+					throw (int)hr1;
+				}
+				else
+				{
+					return z;
 				}
 			}
 			else
@@ -94,18 +90,16 @@ namespace OS12
 			HRESULT hr0 = ((IUnknown*)h)->QueryInterface(IID_IMultiplier, (void**)&pMultiplier);
 			if (SUCCEEDED(hr0))
 			{
+				double z = 0.0;
+				HRESULT hr1 = pMultiplier->Mul(x, y, z);
+				if (!SUCCEEDED(hr1))
 				{
-					double z = 0.0;
-					HRESULT hr1 = pMultiplier->Mul(x, y, z);
-					if (!SUCCEEDED(hr1))
-					{
-						IERR("IMultiplier::Mul");
-						throw (int)hr1;
-					}
-					else
-					{
-						return z;
-					}
+					IERR("IMultiplier::Mul");
+					throw (int)hr1;
+				}
+				else
+				{
+					return z;
 				}
 			}
 			else
