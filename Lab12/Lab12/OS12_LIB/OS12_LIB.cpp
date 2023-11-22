@@ -37,7 +37,7 @@ namespace OS12
 			{
 				{
 					double z = 0.0;
-					HRESULT hr1 = pIAdder->Add(2.0, 3.0, z);
+					HRESULT hr1 = pIAdder->Add(x, y, z);
 					if (!SUCCEEDED(hr1))
 					{
 						IERR("IAdder::Add");
@@ -64,7 +64,7 @@ namespace OS12
 			{
 				{
 					double z = 0.0;
-					HRESULT hr1 = pIAdder->Sub(2.0, 3.0, z);
+					HRESULT hr1 = pIAdder->Sub(x, y, z);
 
 					if (!SUCCEEDED(hr1))
 					{
@@ -96,7 +96,7 @@ namespace OS12
 			{
 				{
 					double z = 0.0;
-					HRESULT hr1 = pMultiplier->Mul(2.0, 3.0, z);
+					HRESULT hr1 = pMultiplier->Mul(x, y, z);
 					if (!SUCCEEDED(hr1))
 					{
 						IERR("IMultiplier::Mul");
@@ -123,7 +123,7 @@ namespace OS12
 			if (SUCCEEDED(hr0))
 			{
 				double z = 0.0;
-				HRESULT hr1 = pMultiplier->Div(2.0, 3.0, z);
+				HRESULT hr1 = pMultiplier->Div(x, y, z);
 
 				if (!SUCCEEDED(hr1))
 				{
