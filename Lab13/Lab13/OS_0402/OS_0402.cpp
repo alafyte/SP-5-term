@@ -78,9 +78,14 @@ int main(int argc, char* argv[])
 		std::cout << err << std::endl;
 		return -1;
 	}
+	catch (int err)
+	{
+		std::cout << "Error code: " << err << std::endl;
+		return -1;
+	}
 	catch (const std::exception&)
 	{
-		std::cout << "Произошла ошибка. Проверьте параметры и повторите попытку" << std::endl;
+		std::cout << "An error has occurred. Check settings and try again" << std::endl;
 		return -1;
 	}
 	return 0;
