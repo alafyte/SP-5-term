@@ -8,14 +8,14 @@ CA::CA() :m_Ref(1)
 {
 	SEQ;
 	InterlockedIncrement((LONG*)&g_Components);
-	LOG("OS12::Adder g_Components = ", g_Components);
+	LOG("OS13::Adder g_Components = ", g_Components);
 };
 
 CA::~CA() 
 {
 	SEQ;
 	InterlockedDecrement((LONG*)&g_Components);
-	LOG("OS12::~Adder g_Components = ", g_Components);
+	LOG("OS13::~Adder g_Components = ", g_Components);
 };
 
 HRESULT STDMETHODCALLTYPE CA::QueryInterface(REFIID riid, void** ppv)
@@ -36,7 +36,7 @@ HRESULT STDMETHODCALLTYPE CA::QueryInterface(REFIID riid, void** ppv)
 	else rc = E_NOINTERFACE;
 
 	if (rc == S_OK) this->AddRef();
-	LOG("OS12::QueryInterface rc = ", rc);
+	LOG("OS13::QueryInterface rc = ", rc);
 	return rc;
 };
 
@@ -44,7 +44,7 @@ ULONG STDMETHODCALLTYPE CA::AddRef(void)
 {
 	SEQ;
 	InterlockedIncrement((LONG*)&(this->m_Ref));
-	LOG("OS12::AddRef m_Ref = ", this->m_Ref);
+	LOG("OS13::AddRef m_Ref = ", this->m_Ref);
 	return this->m_Ref;
 };
 
@@ -53,7 +53,7 @@ ULONG STDMETHODCALLTYPE CA::Release(void)
 	SEQ;
 	ULONG rc = this->m_Ref;
 	if ((rc = InterlockedDecrement((LONG*)&(this->m_Ref))) == 0) delete this;
-	LOG("OS12::Release rc = ", rc);
+	LOG("OS13::Release rc = ", rc);
 	return rc;
 };
 
