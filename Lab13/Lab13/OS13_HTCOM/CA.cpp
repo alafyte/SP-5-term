@@ -118,6 +118,7 @@ static void CALLBACK SnapAsyncWrapper(LPVOID prm, DWORD dwTimerLowValue, DWORD d
 {
 	CA* caInstance = new CA();
 	caInstance->snapAsync(prm, dwTimerLowValue, dwTimerHighValue);
+	delete caInstance;
 }
 
 void CALLBACK CA::snapAsync(LPVOID prm, DWORD, DWORD)
