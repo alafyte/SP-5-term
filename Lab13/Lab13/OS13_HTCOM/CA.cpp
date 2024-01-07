@@ -263,6 +263,7 @@ HRESULT STDMETHODCALLTYPE CA::Insert		// добавить элемент в хр
 	if (freeIndex < 0)
 	{
 		WriteLastError(htHandle, "Key already exists");
+		ReleaseMutex(htHandle->Mutex);
 		rc = false;
 		return S_OK;
 	}
