@@ -129,12 +129,6 @@ HRESULT STDMETHODCALLTYPE CA::Create(
 	htHandle->FileMapping = hm;
 	htHandle->Addr = lp;
 	htHandle->LastSnaptime = time(NULL);
-	std::wstring MutexName = L"Global\\"; MutexName += fileName; MutexName += L"-mutex";
-	htHandle->Mutex = CreateMutex(
-		&SA,
-		FALSE,
-		MutexName.c_str());
-
 	htHandle->SnapshotTimer = CreateWaitableTimer(0, FALSE, 0);
 	LARGE_INTEGER Li{};
 	Li.QuadPart = -(10000000 * htHandle->SecSnapshotInterval);
@@ -148,6 +142,7 @@ static void CALLBACK SnapAsyncWrapper(LPVOID prm, DWORD dwTimerLowValue, DWORD d
 {
 	CA* caInstance = new CA();
 	caInstance->snapAsync(prm, dwTimerLowValue, dwTimerHighValue);
+	delete caInstance;
 }
 
 void CALLBACK CA::snapAsync(LPVOID prm, DWORD, DWORD)
@@ -266,13 +261,6 @@ HTHANDLE* CA::OpenHTFromFile(const wchar_t* fileName)
 	htHandle->FileMapping = hm;
 	htHandle->Addr = lp;
 	htHandle->LastSnaptime = time(NULL);
-
-	std::wstring MutexName = L"Global\\"; MutexName += fileName; MutexName += L"-mutex";
-	htHandle->Mutex = CreateMutex(
-		&SA,
-		FALSE,
-		MutexName.c_str());
-
 	return htHandle;
 }
 
@@ -345,6 +333,7 @@ HRESULT STDMETHODCALLTYPE CA::Insert		// добавить элемент в хр
 	if (freeIndex < 0)
 	{
 		WriteLastError(htHandle, "Key already exists");
+		ReleaseMutex(htHandle->Mutex);
 		rc = false;
 		return S_OK;
 	}

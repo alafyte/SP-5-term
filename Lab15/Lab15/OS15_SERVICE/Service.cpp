@@ -123,6 +123,12 @@ void startService()
 			trace("-- open: error\n");
 
 		OS15::Dispose(h);
+		serviceStatus.dwWin32ExitCode = 0;
+		serviceStatus.dwCurrentState = SERVICE_STOPPED;
+		serviceStatus.dwCheckPoint = 0;
+		serviceStatus.dwWaitHint = 0;
+
+		SetServiceStatus(hServiceStatusHandle, &serviceStatus);
 	}
 	catch (const char* e) { cout << e << endl; }
 	catch (int e) { cout << "HRESULT: " << e << endl; }
