@@ -71,6 +71,7 @@ namespace HT
 		htHandle->FileMapping = hm;
 		htHandle->Addr = lp;
 		htHandle->LastSnaptime = time(NULL);
+
 		htHandle->Mutex = CreateMutex(NULL, FALSE, fileName);
 
 		htHandle->SnapshotTimer = CreateWaitableTimer(0, FALSE, 0);
@@ -148,6 +149,8 @@ namespace HT
 		htHandle->FileMapping = hm;
 		htHandle->Addr = lp;
 		htHandle->LastSnaptime = time(NULL);
+
+
 		htHandle->Mutex = CreateMutex(NULL, FALSE, fileName);
 
 		return htHandle;
@@ -215,6 +218,7 @@ namespace HT
 		if (freeIndex < 0)
 		{
 			WriteLastError(htHandle, "Key already exists");
+			ReleaseMutex(htHandle->Mutex);
 			return false;
 		}
 
