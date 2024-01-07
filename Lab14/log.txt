@@ -17,3 +17,7 @@
 17:OS14::Release rc = 1
 19:OS14::AddRef m_Ref = 2
 18:OS14::QueryInterface rc = 0
+21:OS14::AddRef m_Ref = 3
+20:OS14::QueryInterface rc = 0
+22:OS14::Release rc = 2
+23:DllCanUnloadNow: rc = 1
